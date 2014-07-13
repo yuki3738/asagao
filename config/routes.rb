@@ -4,4 +4,7 @@ Asagao::Application.routes.draw do
 
   get "lesson/:action(/:name)" => "lesson"
 
+  resources :members do
+    collection { get "search" }
+  end
 end
