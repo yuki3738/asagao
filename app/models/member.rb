@@ -1,6 +1,9 @@
 class Member < ActiveRecord::Base
   attr_accessible :number, :name, :full_name, :email, :birthday, :gender, :administrator
 
+  validates :number, presence: true,
+    numericality: { only_integer: true,
+  
   class << self
     def search(query)
       rel = order("number")
