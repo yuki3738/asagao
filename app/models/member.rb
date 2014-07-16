@@ -7,11 +7,13 @@ class Member < ActiveRecord::Base
        greater_than: 0, less_than: 100, allow_blank: true },
     uniqueness: true
   validates :name, presence: true,
-    format: { with: /\A[A-Za-z]\w*\z/, allow_blank: true },
+    format: { with: /\A[A-Za-z]\w*\z/, allow_blank: true,
+              message: :invalid_member_name },
     length: { minimum: 2, maximum: 20, allow_blank: true },
     uniqueness: { case_sensitive: false }
   validates :full_name, length: { maximum: 20 }
-  validate :check_email
+  validates :email, presence: true
+  validate  :check_email
 
   class << self
     def search(query)
