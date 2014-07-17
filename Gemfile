@@ -41,3 +41,5 @@ gem 'jquery-rails'
 gem 'better_errors'
 # better_errorsの画面上にirb/pry(PERL)を表示する
 gem 'binding_of_caller'
+
+gem 'pry'
