@@ -23,4 +23,11 @@ class ArticleTest < ActiveSupport::TestCase
     assert article.invalid?
     assert article.errors.include?(:expired_at)
   end
+
+  test "no_expiration" do
+    article = Factory.build(:article)
+    article.no_expiration = true
+    assert article.valid?
+    assert_nil article.expired_at
+  end
 end
