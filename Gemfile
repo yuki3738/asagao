@@ -43,3 +43,8 @@ gem 'better_errors'
 gem 'binding_of_caller'
 
 gem 'pry'
+
+group :test do
+  gem 'factory_girl_rails', '~> 1.4.0'
+end
+
