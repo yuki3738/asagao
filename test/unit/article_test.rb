@@ -30,4 +30,21 @@ class ArticleTest < ActiveSupport::TestCase
     assert article.valid?
     assert_nil article.expired_at
   end
+
+  test "readable" do
+    article1 = Factory(:article,
+      released_at: 1.day.ago, expired_at: 1.day.from_now)
+    article2 = Factory(:article,
+      released_at: 2.days.ago, expired_at: 1.day.ago)
+    article3 = Factory(:article,
+      released_at: 1.day.from_now, expired_at: 2.days.from_now)
+    article4 = Factory(:article,
+      released_at: 1.day.ago, expired_at: nil)
+
+    articles = Article.readable
+    assert_includes articles, article1, "現在の記事が含まれる"
+    assert_not_includes articles, article2, "過去の記事は含まれない"
+    assert_not_includes articles, article3, "未来の記事は含まれない"
+    assert_includes articles, article4, "expiredがnilの場合"
+  end
 end
