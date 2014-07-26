@@ -9,4 +9,11 @@ class MemberTest < ActiveSupport::TestCase
     member = Factory(:member)
     assert_equal "Yamada Taro", member.full_name
   end
+
+  test "authenticate" do
+    member = Factory(:member, name: "taro",
+                password: "happy", password_confirmation: "happy")
+    assert_nil Member.authenticate("taro", "lucky")
+    assert_equal member, Member.authenticate("taro", "happy")
+  end
 end

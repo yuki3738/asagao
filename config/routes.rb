@@ -9,4 +9,6 @@ Asagao::Application.routes.draw do
   end
 
   resources :articles
+
+  resource :session, only: [:create, :destroy]
 end
