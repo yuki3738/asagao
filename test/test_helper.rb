@@ -10,4 +10,11 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+
+  private
+
+  def login_as(name, admin = false)
+    session[:member_id] = Factory(:member, name: name,
+                             administrator: admin).id
+  end
 end
