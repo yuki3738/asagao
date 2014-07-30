@@ -11,4 +11,12 @@ Asagao::Application.routes.draw do
   resources :articles
 
   resource :session, only: [:create, :destroy]
+
+  namespace :admin do
+    root to: "top#index"
+    resources :members do
+      collection { get "search" }
+    end
+    resources :articles
+  end
 end
