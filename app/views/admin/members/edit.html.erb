@@ -2,7 +2,7 @@
 
 <h1><%= @page_title %></h1>
 
-<p><%= link_to "会員の詳細に戻る", @member %></p>
+<p><%= link_to "会員の詳細に戻る", [:admin, @member] %></p>
 
 <%= form_for @member do |form| %>
 <%= render "form", form: form  %>
