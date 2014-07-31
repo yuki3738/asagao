@@ -1,6 +1,10 @@
 require 'test_helper'
 
-class ArticlesControllerTest < ActionController::TestCase
+class Admin::ArticlesControllerTest < ActionController::TestCase
+  def setup
+    login_as("taro", true)
+  end
+
   test "index" do
     5.times { Factory(:article) }
     get :index
@@ -28,13 +32,13 @@ class ArticlesControllerTest < ActionController::TestCase
   test "create" do
     post :create, article: Factory.attributes_for(:article)
     article = assigns[:article]
-    assert_redirected_to article
+    assert_redirected_to [:admin, article]
   end
 
   test "update" do
     article = Factory(:article)
     put :update, id: article, article: Factory.attributes_for(:article)
-    assert_redirected_to article
+    assert_redirected_to [:admin, article]
   end
 
   test "fail to create" do
@@ -55,7 +59,7 @@ class ArticlesControllerTest < ActionController::TestCase
   test "destroy" do
     article = Factory(:article)
     delete :destroy, id: article
-    assert_redirected_to :articles
+    assert_redirected_to :admin_articles
     assert_raise(ActiveRecord::RecordNotFound) {
       Article.find(article.id) }
   end

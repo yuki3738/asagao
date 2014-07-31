@@ -28,7 +28,7 @@ class Admin::ArticlesController < Admin::Base
     @article = Article.find(params[:id])
     @article.assign_attributes(params[:article])
     if @article.save
-      redirect_to @article, notice: "ニュース記事を更新しました。"
+      redirect_to [:admin, @article], notice: "ニュース記事を更新しました。"
     else
       render "edit"
     end

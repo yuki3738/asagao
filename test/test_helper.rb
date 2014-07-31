@@ -12,9 +12,18 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 
   private
-
+  # ログイン状態にする
   def login_as(name, admin = false)
     session[:member_id] = Factory(:member, name: name,
-                             administrator: admin).id
+                             administrator: admin)
+  end
+end
+
+class ActionDispatch::IntegrationTest
+  private
+  # ログイン状態にする
+  def login_as(name, admin = false)
+    Factory(:member, name: name, administrator: admin)
+    post "/session", name: name, password: "password"
   end
 end
