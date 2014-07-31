@@ -19,4 +19,7 @@ Asagao::Application.routes.draw do
     end
     resources :articles
   end
+
+  resource :account, only: [:show, :edit, :update]
+  
 end
