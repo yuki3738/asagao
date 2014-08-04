@@ -1,6 +1,5 @@
 class Member < ActiveRecord::Base
   include EmailAddressChecker
-  attr_accessible :number, :name, :full_name, :email, :birthday, :gender, :administrator, :password, :password_confirmation
 
   validates :number, presence: true,
     numericality: { only_integer: true,
@@ -17,6 +16,12 @@ class Member < ActiveRecord::Base
     confirmation: { allow_blank: true }
 
   attr_accessor :password, :password_confirmation
+
+  ACCESSIBLE_ATTRS = [ :name, :full_name, :gender, :birthday,
+    :email, :password, :password_confirmation ]
+  attr_accessible *ACCESSIBLE_ATTRS
+  attr_accessible *(ACCESSIBLE_ATTRS + [:number, :administrator]),
+    as: :admin
 
   def password=(val)
     if val.present?

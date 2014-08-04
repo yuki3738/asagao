@@ -1,5 +1,4 @@
 class Article < ActiveRecord::Base
-  attr_accessible :title, :body, :released_at, :expired_at, :member_only, :no_expiration
   validates :title, :body, :released_at, presence: true
   validates :title, length: { maximum: 200 }
   validate :check_expired_at
@@ -11,6 +10,9 @@ class Article < ActiveRecord::Base
       rel = where("released_at <= ? AND (? < expired_at OR " +
                   "expired_at IS NULL)", now, now)
       member.kind_of?(Member) ? rel : rel.where(member_only: false) }
+
+  attr_accessible :title, :body, :released_at, :expired_at,
+    :no_expiration, :member_only, as: :admin
 
   def no_expiration
     expired_at.blank?
