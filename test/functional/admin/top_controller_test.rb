@@ -3,7 +3,8 @@ require 'test_helper'
 class Admin::TopControllerTest < ActionController::TestCase
   test "index for a common member" do
     login_as("taro")
-    assert_raise(ApplicationController::Forbidden) { get :index }
+    get :index
+    assert_response 403
   end
 
   test "index for an admin" do

@@ -21,5 +21,6 @@ Asagao::Application.routes.draw do
   end
 
   resource :account, only: [:show, :edit, :update]
-  
+
+  match "*anything" => "top#not_found"
 end
