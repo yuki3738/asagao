@@ -27,7 +27,7 @@ div#sidebar {
 /* ヘッダー */
 div#header {
   border-top: 4px solid #6bb;
-  
+
   p.member {
     width: 300px;
     float: right;
@@ -54,7 +54,7 @@ div.menubar {
   color: #ccc;
   font-size: 80%;
   padding: 8px 16px;
-  
+
   a { text-decoration: none; }
   a:link { color: #ccc; }
   a:visited { color: #ecc; }
@@ -92,7 +92,7 @@ div#content {
     font-size: 90%;
     line-height: 1.5;
   }
-  
+
   p.article_footer {
     border-top: 1px #ccf dashed;
     padding-top: 4px;
@@ -131,7 +131,7 @@ div#sidebar {
 @mixin data-table {
   font-size: 90%;
   width: 100%;
-  
+
   th {
     background-color: #499;
     color: white;
@@ -168,7 +168,7 @@ div#errors {
   border: 1px solid #ecc;
   padding: 3px 6px;
   margin: 0 0 1em;
-  
+
   h2 {
     font-size: 90%;
     color: red;
@@ -184,4 +184,18 @@ div#errors {
 div.field_with_errors {
   background-color: #fcc;
   padding: 2px;
+}
+
+/* ページネーション */
+div.pagination {
+  font-size: 75%;
+  padding: 4px 8px;
+  border: 1px solid #499;
+  word-spacing: 4px;
+
+  em { font-style: normal; }
+  em.current {
+    color: #499;
+    font-weight: bold;
+  }
 }

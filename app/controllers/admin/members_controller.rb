@@ -1,7 +1,7 @@
 class Admin::MembersController < Admin::Base
 
   def index
-    @members = Member.order("number")
+    @members = Member.page(params[:page]).per(5)
   end
 
   def search

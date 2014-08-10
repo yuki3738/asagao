@@ -1,6 +1,6 @@
 class Admin::ArticlesController < Admin::Base
   def index
-    @articles = Article.order("released_at DESC")
+    @members = Member.page(params[:page]).per(5) 
   end
 
   def show

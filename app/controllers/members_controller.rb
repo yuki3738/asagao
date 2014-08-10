@@ -2,7 +2,7 @@ class MembersController < ApplicationController
   before_filter :login_required
 
   def index
-    @members = Member.order("number")
+    @members = Member.page(params[:page]).per(5)
   end
 
   def search

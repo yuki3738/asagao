@@ -7,6 +7,7 @@ gem 'rails', '3.2.19'
 
 gem 'sqlite3'
 gem 'rails-i18n'
+gem 'kaminari'
 
 # Gems used only for assets and not required
 # in production environments by default.
