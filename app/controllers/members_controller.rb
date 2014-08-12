@@ -12,5 +12,21 @@ class MembersController < ApplicationController
 
   def show
     @member = Member.find(params[:id])
+    if params[:format].in?(["jpg", "png", "gif"])
+      send_image
+    else
+      render "members/show"
+    end
+  end
+
+  private
+
+  def send_image
+    if @member.image.present?
+      send_data @member.image.data,
+        type: @member.image.content_type, disposition: "inline"
+    else
+      raise NotFount
+    end
   end
 end

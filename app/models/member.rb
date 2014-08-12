@@ -1,6 +1,8 @@
 class Member < ActiveRecord::Base
   include EmailAddressChecker
 
+  has_one :image, class_name: "MemberImage", dependent: :destroy
+
   validates :number, presence: true,
     numericality: { only_integer: true,
        greater_than: 0, less_than: 100, allow_blank: true },
