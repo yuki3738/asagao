@@ -1,6 +1,8 @@
 class MemberImage < ActiveRecord::Base
   belongs_to :member
 
+  validate :check_image
+
   attr_reader :uploaded_image
   attr_accessible :uploaded_image
   attr_accessible :uploaded_image, as: :admin
@@ -26,6 +28,17 @@ class MemberImage < ActiveRecord::Base
     when "image/jpg"   then "image/jpeg"
     when "image/x-png" then "image/png"
     else ctype
+    end
+  end
+
+  def check_image
+    if @uploaded_image
+      if data.size > 64.kilobytes
+        errors.add(:uploaded_image, :too_big_image)
+      end
+      unless IMAGE_TYPES.has_key?(content_type)
+        errors.add(:uploaded_image, :invalid_image)
+      end
     end
   end
 end
