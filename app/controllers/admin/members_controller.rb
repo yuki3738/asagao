@@ -15,10 +15,12 @@ class Admin::MembersController < Admin::Base
 
   def new
     @member = Member.new(birthday: Date.new(1985, 1, 1))
+    @member.build_image
   end
 
   def edit
     @member = Member.find(params[:id])
+    @member.build_image unless @member.image
   end
 
   def create
