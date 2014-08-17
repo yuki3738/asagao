@@ -9,6 +9,7 @@ Asagao::Application.routes.draw do
 
     resources :entries
   end
+  resources :entries
 
   resources :articles, only: [:index, :show]
 
