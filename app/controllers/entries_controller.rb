@@ -20,8 +20,34 @@ class EntriesController < ApplicationController
     @entry = Entry.new(posted_at: Time.current)
   end
 
-  # 編集フォーム
   def edit
     @entry = @current_member.entries.find(params[:id])
+  end
+
+    def create
+    @entry = Entry.new(params[:entry])
+    @entry.author = @current_member
+    if @entry.save
+      redirect_to @entry, notice: "記事を作成しました。"
+    else
+      render "new"
+    end
+  end
+
+  def update
+    @entry = @current_member.entries.find(params[:id])
+    @entry.assign_attributes(params[:entry])
+    if @entry.save
+      redirect_to @entry, notice: "記事を更新しました。"
+    else
+      render "edit"
+    end
+  end
+
+  def destroy
+    @entry = @current_member.entries.find(params[:id])
+    @entry.destroy
+    redirect_to [@current_member, :entries],
+      notice: "記事を削除しました。"
   end
 end
