@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140811123714) do
+ActiveRecord::Schema.define(:version => 20140819172302) do
 
   create_table "articles", :force => true do |t|
     t.string   "title",                          :null => false
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(:version => 20140811123714) do
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
   end
+
+  create_table "entries", :force => true do |t|
+    t.integer  "member_id",                       :null => false
+    t.string   "title",                           :null => false
+    t.text     "body"
+    t.datetime "posted_at",                       :null => false
+    t.string   "status",     :default => "draft", :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  add_index "entries", ["member_id"], :name => "index_entries_on_member_id"
 
   create_table "member_images", :force => true do |t|
     t.integer  "member_id",    :null => false
@@ -45,5 +57,15 @@ ActiveRecord::Schema.define(:version => 20140811123714) do
     t.datetime "updated_at",                         :null => false
     t.string   "hashed_password"
   end
+
+  create_table "votes", :force => true do |t|
+    t.integer  "entry_id",   :null => false
+    t.integer  "member_id",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "votes", ["entry_id"], :name => "index_votes_on_entry_id"
+  add_index "votes", ["member_id"], :name => "index_votes_on_member_id"
 
 end
