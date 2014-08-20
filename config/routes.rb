@@ -7,6 +7,10 @@ Asagao::Application.routes.draw do
   resources :members, only: [:index, :show] do
     collection { get "search" }
   end
+  resources :entries do
+    member { put "like", "unlike" }
+    collection { get "voted" }
+  end
 
   resources :articles, only: [:index, :show]
 

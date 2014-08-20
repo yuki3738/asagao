@@ -199,3 +199,16 @@ div.pagination {
     font-weight: bold;
   }
 }
+
+/* 投票 */
+span.vote, p.vote {
+  color: #88c;
+
+  a.button {
+    border: 1px solid #ccf;
+    padding: 0 3px;
+    color: #88c;
+    background-color: #eef;
+    text-decoration: none;
+  }
+}

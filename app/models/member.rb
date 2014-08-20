@@ -36,6 +36,10 @@ class Member < ActiveRecord::Base
     @password = val
   end
 
+  def votable_for?(entry)
+    entry && entry.author != self && !votes.exists?(entry_id: entry.id)
+  end
+
   private
   def check_email
     if email.present?

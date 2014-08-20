@@ -4,4 +4,9 @@ class Vote < ActiveRecord::Base
 
   attr_accessible :entry_id
 
+  validate do
+    unless member && member.votable_for?(entry)
+      errors.add(:base, :invalid)
+    end
+  end
 end
